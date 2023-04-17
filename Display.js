@@ -17,6 +17,12 @@ class Display {
     this.tipoOperacion = undefined;
     this.imprimirValores();
   }
+  computar(tipo) {
+    console.log("Tipo de operacion", tipo);
+    this.tipoOperacion !== "igual" && this.calcular();
+    this.tipoOperacion = tipo;
+    this.valorAnterior = this.valorActual || this.valorAnterior;
+  }
   agregarNumero(numero) {
     if (numero === "." && this.valorActual.includes(".")) return;
     this.valorActual = this.valorActual + numero;
@@ -29,8 +35,9 @@ class Display {
   calcular() {
     const valorAnterior = parseFloat(this.valorAnterior);
     const valorActual = parseFloat(this.valorActual);
-    if (isNaN(valorActual) || isNaN(valorAnterior))
-      return (this.valorActual = this.calculador[this.tipoOperacion](
+    if (isNaN(valorActual) || isNaN(valorAnterior)) return;
+    this.tipoOperacion &&
+      (this.valorActual = this.calculador[this.tipoOperacion](
         valorAnterior,
         valorActual
       ));

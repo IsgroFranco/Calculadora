@@ -6,6 +6,10 @@
 body {
   margin: 0;
   background-color: #224870;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .container {
@@ -64,4 +68,11 @@ button:focus {
 }
 #valor-anterior {
   font-size: 2rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin-top: 4rem;
+    height: unset;
+  }
 }
