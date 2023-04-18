@@ -1,6 +1,7 @@
 * {
   font-family: monospace;
   color: #ffffff;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
