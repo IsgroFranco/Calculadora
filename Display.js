@@ -39,7 +39,8 @@ class Display {
     this.imprimirValores();
   }
   imprimirValores() {
-    this.displayValorActual.textContent = this.valorActual;
+    this.displayValorActual.textContent =
+      this.valorActual === "" ? "" : this.valorActual;
     this.displayValorAnterior.textContent = `${this.valorAnterior} ${
       this.signos[this.tipoOperacion] || ""
     }`;
@@ -53,5 +54,8 @@ class Display {
         valorAnterior,
         valorActual
       ));
+    if (this.valorActual === 0) {
+      this.valorActual = "0";
+    }
   }
 }
