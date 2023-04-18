@@ -1,11 +1,11 @@
 * {
-  font-family: "Fraunces", serif;
+  font-family: monospace;
   color: #ffffff;
 }
 
 body {
   margin: 0;
-  background-color: #224870;
+  background: linear-gradient(90deg, #161036, #191e46);
   display: flex;
   justify-content: center;
   align-items: center;

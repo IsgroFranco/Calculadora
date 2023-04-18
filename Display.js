@@ -6,6 +6,7 @@ class Display {
     this.tipoOperacion = undefined;
     this.valorActual = "";
     this.valorAnterior = "";
+    this.signos = { sumar: "+", restar: "-", multiplicar: "x", dividir: "/" };
   }
   borrar() {
     this.valorActual = this.valorActual.toString().slice(0, -1);
@@ -19,18 +20,29 @@ class Display {
   }
   computar(tipo) {
     console.log("Tipo de operacion", tipo);
+    if (this.valorActual === "") return; // no se ha ingresado un número previamente
     this.tipoOperacion !== "igual" && this.calcular();
     this.tipoOperacion = tipo;
     this.valorAnterior = this.valorActual || this.valorAnterior;
+    this.valorActual = "";
+    this.imprimirValores();
   }
   agregarNumero(numero) {
     if (numero === "." && this.valorActual.includes(".")) return;
-    this.valorActual = this.valorActual + numero;
+    if (numero === "0" && this.valorActual === "0") return; // no se pueden ingresar muchos ceros como primer número
+    if (this.valorActual === "0" && numero !== ".") {
+      // si el primer número es cero y no se ingresa un punto, se reemplaza por el número ingresado
+      this.valorActual = numero;
+    } else {
+      this.valorActual = this.valorActual + numero;
+    }
     this.imprimirValores();
   }
   imprimirValores() {
     this.displayValorActual.textContent = this.valorActual;
-    this.displayValorAnterior.textContent = this.valorAnterior;
+    this.displayValorAnterior.textContent = `${this.valorAnterior} ${
+      this.signos[this.tipoOperacion] || ""
+    }`;
   }
   calcular() {
     const valorAnterior = parseFloat(this.valorAnterior);
